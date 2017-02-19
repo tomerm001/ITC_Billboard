@@ -1,0 +1,251 @@
+body {
+    background-color: white;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* ============  app container section ===========*/
+
+#app-container {
+    display: inline-block;
+    padding:0;
+    margin: 0 auto;
+    width: 98%;
+    max-width: 800px;
+}
+
+
+/* ============  header section ===========*/
+#header {
+    display: inline-block;
+    width: 100%;
+    padding: 50px 0;
+    
+}
+
+
+/* ============  message section ===========*/
+#messages-container {
+    display: inline-block;
+    position: relative;
+    margin: 10px auto;
+    padding: 20px 20px;
+    border: 3px solid #00b7ef;
+    width: 100%;
+}
+
+#messages-container .date-info{
+    display: inline-block;
+    position: absolute;
+    left:20px;
+    top:-12px;
+    background-color: white;
+    padding: 0 10px;
+    z-index:2;
+    color: black;
+    font-size: 16px;
+    font-family: 'Poiret One', cursive;
+    text-align: left;   
+}
+
+#messages-container .delete-container{
+    background-color: #00b7ef;
+    color: white;
+    display: inline-block;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    /*border: 1px solid black;*/
+    padding: 1px 3px 4px 3px;
+    margin: 0;
+    right: 0;
+    top: 0;
+}
+
+
+#messages-container .post-title{
+    color: #00b7ef;
+    font-size: 30px;
+    font-family: 'Anton', sans-serif;
+    text-align: left;   
+}
+
+
+#messages-container .post-text {
+    color: #c1bfc0;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    text-align: left;
+    margin-right: 15px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#messages-container .post-username {
+    color: black;
+    font-size: 24px;
+    font-family: 'Pinyon Script', cursive;
+    text-align: right;
+}
+
+/* ================ comments section ==================== */
+
+#messages-container .comments-container {
+    display: inline-block;
+    width: 100%;
+    border-top: 1px dashed #00b7ef;
+    margin: 0;
+    padding: 10px 0;
+    text-align: left;
+}
+
+#messages-container .comments-container .comment-title {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+    font-family: 'Anton', sans-serif;
+    font-size: 16px;
+    color: #00b7ef;
+}
+
+#messages-container .comments-container .comment-text {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: #c1bfc0;
+}
+
+#messages-container .comments-container .comment-text .user-comment {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: black;
+}
+
+#messages-container .comments-container .delete-button{
+    text-align: right;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: #00b7ef;
+    position: relative;
+    right: 10px;
+}
+
+/* ============  input section ===========*/
+#input-container {
+    display: inline-block;
+    position: relative;
+    margin: 10px auto;
+    padding: 20px 20px;
+    border: 3px dashed #00b7ef;
+    width: 100%;
+    text-align: left;
+}
+
+#input-container .date-info{
+    display: inline-block;
+    position: absolute;
+    left:20px;
+    top:-12px;
+    background-color: white;
+    padding: 0 10px;
+    z-index:2;
+    color: black;
+    font-size: 16px;
+    font-family: 'Poiret One', cursive;
+    text-align: center;   
+}
+
+#input-container div {
+    margin: 10px 0 20px 0;
+}
+
+#input-container .message-input {
+    width: 100%;
+    max-width: 100%;
+}
+
+
+#input-container .container-author {
+    text-align: right;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================ add message section ==================== */
+
+#addmessage-container {
+    border: 3px dashed #00b7ef;;
+    margin: 10px 0;
+    padding: 0;
+    display: inline-block;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    position: relative;
+}
+
+#addmessage-container .btn {
+    color: white;
+    background-color:  #66CDAA;
+    font-size: 20px;
+    width: 100px;
+    position: absolute;
+    top: 50%;
+    margin-top: -22.5px;
+    left: 50%;
+    margin-left: -50px;
+}
+
+
+
+/* ================ confirm message section ==================== */
+
+#confirm-message-container {
+    border: 3px dashed #00b7ef;;
+    margin: 10px 0;
+    padding: 10px 0;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+#confirm-message-container .container-buttons {
+    padding: 0;
+}
+
+#confirm-message-container .btn {
+    color: white;
+    background-color:  #66CDAA;
+    font-size: 20px;
+    width: 100px;
+}
+
+#confirm-message-container .btn.red {
+    background-color:  red;
+}
+
+
+
+
+
+
+/*font-family: 'Poiret One', cursive;
+font-family: 'Anton', sans-serif;
+font-family: 'Pinyon Script', cursive;*/
