@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Billboard</title>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--import google font-->
+    <link href="https://fonts.googleapis.com/css?family=Anton|Pinyon+Script|Poiret+One" rel="stylesheet">
+
+    <!--import font awsome CDN-->
+    <script src="https://use.fontawesome.com/b3365a06fb.js"></script>
+
+
+    <!--styleshee file file-->
+    <link rel="stylesheet" type="text/css" href="/static/billboardapp/css/billboardStyling.css">
+
+    <!--  JavaScript -->
+    <script src="/static/billboardapp/js/billboardScript.js"></script>
+
+</head>
+
+<body>
+
+    <!--main container for applicaiton-->
+    <div id="app-container" class="container">
+
+        <!--container for header-->
+        <div id="header" class="container">
+
+            <h1 id="billboard-title">BILLBOARD</h1>
+
+        </div>
+
+        {% for post in all_posts %}
+
+        <!--container for messages-->
+        <div class="messages-container" id="{{ post.id }}">
+
+            <!--container for a specific post-->
+            <div class="post-box">
+
+                <p class="date-info">{{ post.created_date.day }}/{{ post.created_date.month }}/{{ post.created_date.year }} </p>
+
+                <!--delete button-->
+                <p class="delete-container">-</p>
+
+
+                <!--ppost title-->
+                <p class="post-title">{{ post.title }}</p>
+
+                <!--post content-->
+                <p class="post-text"> {{ post.text }}</p>
+
+                <!--username for post-->
+                <p class="post-username"> {{ post.author }}</p>
+
+
+                <!--container for all user comments-->
+                <div class="comments-container container">
+
+                    <p class="comment-title">Comments</p>
+
+                    <!--container for one specific comment-->
+                    <div class="comment-box">
+                        <p class="comment-text"><span class="user-comment">Tomer : </span>This is the text for one comment</p>
+                        <p class="delete-button">Delete</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+        <!--container for Input-->
+        <div id="input-container">
+
+            <!--container for a specific post-->
+            <div class="post-box">
+                <p class="date-info">{{date_now.day}}/{{date_now.month}}/{{date_now.year}}</p>
+
+                <div class="container-title">
+                    <input type="text" placeholder="Title" class="input title-input">
+                </div>
+                <div class="container-content">
+                    <textarea class="message-input" placeholder="Your message here" name="message" rows="10" cols="30"></textarea>
+                </div>
+
+                <div class="container-author">
+                    <input type="text" placeholder="Author" class="input author-input">
+                </div>
+            </div>
+        </div>
+
+
+        <!--container add message-->
+        <div id="addmessage-container">
+            <button id="button-add" type="button" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+
+        <!--container confirm message-->
+        <div id="confirm-message-container">
+            <div class="container-buttons">
+                <button id="button-cancel" type="button" class="btn btn-default red"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button id="button-confirm" type="button" class="btn btn-default"><i class="fa fa-check" aria-hidden="true"></i></button>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+</html>

@@ -26,7 +26,7 @@ body {
 
 
 /* ============  message section ===========*/
-#messages-container {
+.messages-container {
     display: inline-block;
     position: relative;
     margin: 10px auto;
@@ -35,7 +35,7 @@ body {
     width: 100%;
 }
 
-#messages-container .date-info{
+.messages-container .date-info{
     display: inline-block;
     position: absolute;
     left:20px;
@@ -49,7 +49,7 @@ body {
     text-align: left;   
 }
 
-#messages-container .delete-container{
+.messages-container .delete-container{
     background-color: #00b7ef;
     color: white;
     display: inline-block;
@@ -64,7 +64,7 @@ body {
 }
 
 
-#messages-container .post-title{
+.messages-container .post-title{
     color: #00b7ef;
     font-size: 30px;
     font-family: 'Anton', sans-serif;
@@ -72,7 +72,7 @@ body {
 }
 
 
-#messages-container .post-text {
+.messages-container .post-text {
     color: #c1bfc0;
     font-size: 16px;
     font-family: 'Arial', sans-serif;
@@ -82,7 +82,7 @@ body {
     text-justify: inter-word;
 }
 
-#messages-container .post-username {
+.messages-container .post-username {
     color: black;
     font-size: 24px;
     font-family: 'Pinyon Script', cursive;
@@ -91,7 +91,7 @@ body {
 
 /* ================ comments section ==================== */
 
-#messages-container .comments-container {
+.messages-container .comments-container {
     display: inline-block;
     width: 100%;
     border-top: 1px dashed #00b7ef;
@@ -100,7 +100,7 @@ body {
     text-align: left;
 }
 
-#messages-container .comments-container .comment-title {
+.messages-container .comments-container .comment-title {
     display: inline-block;
     width: 100%;
     margin: 0;
@@ -110,7 +110,7 @@ body {
     color: #00b7ef;
 }
 
-#messages-container .comments-container .comment-text {
+.messages-container .comments-container .comment-text {
     display: inline-block;
     width: 100%;
     margin: 0;
@@ -120,13 +120,13 @@ body {
     color: #c1bfc0;
 }
 
-#messages-container .comments-container .comment-text .user-comment {
+.messages-container .comments-container .comment-text .user-comment {
     font-family: 'Arial', sans-serif;
     font-size: 12px;
     color: black;
 }
 
-#messages-container .comments-container .delete-button{
+.messages-container .comments-container .delete-button{
     text-align: right;
     font-family: 'Arial', sans-serif;
     font-size: 12px;
