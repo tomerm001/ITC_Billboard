@@ -164,13 +164,13 @@ body {
     margin: 10px 0 20px 0;
 }
 
-#input-container .message-input {
+#input-container .message-input, #id_text{
     width: 100%;
     max-width: 100%;
 }
 
 
-#input-container .container-author {
+#input-container .container-author, #id_author:parent {
     text-align: right;
     margin: 0;
 }

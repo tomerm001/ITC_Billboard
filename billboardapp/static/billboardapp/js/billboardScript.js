@@ -1,6 +1,19 @@
 $(document).ready(function() {
+
+    // prevent form from refreshing by removing default and creating manual ajax post
+    $('#new-post-form').submit(function(e) {
+        $.post('/billboardapp/addpost', $(this).serialize(), function(data){
+            console.log(data.message);
+        });
+        e.preventDefault();
+    });
+
+    // Attache actions to button
     $("#button-confirm").click(function() {
-        addPost();
+        
+        // post form
+        $('#new-post-form').submit();
+ 
         $('#confirm-message-container').slideUp();
         $('#input-container').slideUp();
         $('#addmessage-container').slideDown();
@@ -23,22 +36,26 @@ $(document).ready(function() {
         $('#confirm-message-container').slideUp();
         $('#input-container').slideUp();
         $('#addmessage-container').slideDown();
-
     })
 
-
+    // add event listener to delete button
+    $('.delete-container').css( 'cursor', 'pointer' );
+    $(".delete-container").click(function(){
+        var postId = $(this).attr("alt");
+        deletePost(postId);
+    });
 });
 
 
+// delete a specific post
+function deletePost(postId){
+    console.log(postId);
+    
+    $.post( '/billboardapp/delpost', { postid: postId }, function( data ) {
+            console.log("complete");
+        }, "json");
 
-function addPost() {
-    var postTitle = $('.title-input').val();
-    var postText = $('.message-input').val();
-    var postAuthor = $('.author-input').val();
+    location.reload();
 
-    var newPost = { post_title: postTitle, post_text: postText, post_author: postAuthor }
 
-    $.post("/billboardapp/addpost", newPost, function(result) {
-        Console.log(result)
-    });
 };
