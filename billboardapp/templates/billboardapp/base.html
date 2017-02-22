@@ -1,0 +1,78 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Billboard</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--import google font-->
+    <link href="https://fonts.googleapis.com/css?family=Anton|Pinyon+Script|Poiret+One" rel="stylesheet">
+
+    <!--import font awsome CDN-->
+    <script src="https://use.fontawesome.com/b3365a06fb.js"></script>
+
+    <!--styleshee file file-->
+    <link rel="stylesheet" type="text/css" href="/static/billboardapp/css/billboardStyling.css">
+
+    <!--  JavaScript -->
+    <script src="/static/billboardapp/js/billboardScript.js"></script>
+
+</head>
+<body>
+
+    <!-- =============================== MAIN CONTAINER FOR APPLICATION =========================================== -->
+    <!-- ========================================================================================================== -->
+    <div id="app-container" class="container">
+
+        <!-- ================================ CONTAINER FOR HEADER ============================================ -->
+        <div id="header" class="container">
+            <h1 id="billboard-title">BILLBOARD</h1>
+        </div>
+
+        <!-- ================================ CONTAINER FOR HEADER ============================================ -->
+
+        {% block content %}
+        {% endblock %}
+      
+        <!-- ================================= CONTAINER FOR FORM AREA ========================================= -->
+        <div id="input-container">
+
+            <!--container for a specific post-->
+            <div class="post-box">
+                <p class="date-info">{{date_now.day}}/{{date_now.month}}/{{date_now.year}}</p>
+
+                 <!--container for testing forms-->
+                <form method="POST" class="post-form" id="new-post-form">
+                    {% csrf_token %} 
+                    {{ form.as_p}}
+                </form>
+            </div>
+        </div>
+
+        <!-- ================================= CONTAINER CONFIRM MESSAGE ========================================= -->
+        <div id="confirm-message-container">
+            <div class="container-buttons">
+                <button id="button-cancel" type="button" class="btn btn-default red"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button id="button-confirm" type="button" class="btn btn-default"><i class="fa fa-check" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    
+        <!-- ===================================  CONTAINER ADD MESSAGE ==========================================-->
+        <div id="addmessage-container">
+            <button id="button-add" type="button" class="btn btn-default"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'billboardapp/base.html' %} 
+
+{% block content %}
+    
+        {% for post in all_posts %}
+
+        <!--container for messages-->
+        <div class="messages-container" id="{{ post.id }}">
+
+            <!--container for a specific post-->
+            <div class="post-box">
+
+                <p class="date-info">{{ post.created_date.day }}/{{ post.created_date.month }}/{{ post.created_date.year }} </p>
+
+                <!--delete button-->
+                <p class="delete-container" alt="{{ post.id }}">-</p>
+
+
+                <!--ppost title-->
+                <p class="post-title">{{ post.title }}</p>
+
+                <!--post content-->
+                <p class="post-text"> {{ post.text }}</p>
+
+                <!--username for post-->
+                <p class="post-username"> {{ post.author }}</p>
+
+
+                <!--container for all user comments-->
+                <div class="comments-container container">
+
+                    <p class="comment-title">Comments</p>
+
+                    <!--container for one specific comment-->
+                    <div class="comment-box">
+                        <p class="comment-text"><span class="user-comment">Tomer : </span>This is the text for one comment</p>
+                        <p class="delete-button">Delete</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+{% endblock %}
