@@ -12,7 +12,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
+
 def index (request):
     form = PostForm()
     all_posts = Posts.objects.filter(visible=True)
