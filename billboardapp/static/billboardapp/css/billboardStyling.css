@@ -16,6 +16,29 @@ body {
 }
 
 
+/* ============  authentication header section ===========*/
+.page-header {
+    text-align: left;
+    font-size: 18px;
+}
+
+.page-header a:hover{
+    text-decoration: none;
+}
+
+.page-header .menu {
+    display: inline-block;
+    float: right;
+
+}
+
+.page-header .top-menu {
+    display: inline-block;
+    cursor: pointer;
+
+}
+
+
 /* ============  header section ===========*/
 #header {
     display: inline-block;
@@ -88,6 +111,46 @@ body {
     font-family: 'Pinyon Script', cursive;
     text-align: right;
 }
+
+/* ================ Login section ==================== */
+
+.login-container {
+    text-align: center;
+    border: 3px solid #00b7ef;
+    padding: 20px;
+
+}
+
+.login-container form {
+    text-align: center;
+}
+
+.login-container table {
+    margin: auto;
+}
+
+.login-container label {
+    margin: 3px 15px;
+    font-size: 22px;
+    font-family: 'Poiret One', cursive;
+
+}
+
+.login-container .login-button {
+    border-radius: 3px;
+    color: white;
+    background-color: #00b7ef;
+    font-size: 20px;
+    padding: 5px 30px;
+    margin: 20px 0 5px 0;
+    box-shadow: 0;
+    border: none;
+
+}
+
+
+
+
 
 /* ================ comments section ==================== */
 

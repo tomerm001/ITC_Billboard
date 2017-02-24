@@ -7,6 +7,10 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from datetime import datetime
 from .forms import PostForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+
 
 
 def index (request):
@@ -54,3 +58,5 @@ def deletePost(request):
         postToDelete.save()
 
         return HttpResponse(json.dumps({"Completed": "Post Removed"}),content_type="application/json")
+
+
