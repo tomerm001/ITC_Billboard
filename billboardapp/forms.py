@@ -10,3 +10,12 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = ('title', 'text', 'author')
+
+
+class CommentForm(forms.ModelForm):
+    
+    text_comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Enter comment here'}), label='')
+
+    class Meta:
+        model = Comments
+        fields = ['text_comment']

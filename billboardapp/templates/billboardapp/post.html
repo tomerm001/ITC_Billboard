@@ -33,15 +33,38 @@
 
                     <p class="comment-title">Comments</p>
 
+
+                    {% for comment in post.comments_set.all %}
+
                     <!--container for one specific comment-->
                     <div class="comment-box">
-                        <p class="comment-text"><span class="user-comment">Tomer : </span>This is the text for one comment</p>
-                        <p class="delete-button">Delete</p>
+                        <p class="comment-text"><span class="user-comment">{{comment.author}} : </span>{{comment.text_comment}}</p>
+
+                        {% ifequal user.username comment.author %}
+                            <p class="delete-button">Delete</p>
+                        {% else %}
+                            <p class="delete-button"></p>
+                        {% endifequal %}
+
+
                     </div>
 
+                     {% endfor %}
+                    
+
+                    <!--container for one adding comment-->
+                    <div class="comment-input-box">
+                        
+                        <span class="user-comment">{{user}} : </span>
+                        
+                        <form method="POST" class="post-comment-form" id="new-comment-form-{{ post.id }}" alt="{{ post.id }}">
+                            {% csrf_token %} 
+                            {{ commentform.as_p}}
+                            <input class="submit-comment-button" value="Send" type="submit" name="submitcomment"></<input>
+                        </form>
+                    </div>
                 </div>
             </div>
-
         </div>
 
         {% endfor %}

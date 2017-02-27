@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
     // prevent form from refreshing by removing default and creating manual ajax post
     $('#new-post-form').submit(function(e) {
         $.post('/billboardapp/addpost', $(this).serialize(), function(data){
@@ -8,11 +9,21 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    // prevent default for sending comments
+    $('.post-comment-form').submit(function(e) {
+        $.post('/billboardapp/addcomment', $(this).serialize(), function(data){
+            console.log(data.message);
+        });
+        e.preventDefault();
+        location.reload();
+    });
+
     // Attache actions to button
     $("#button-confirm").click(function() {
         
         // post form
         $('#new-post-form').submit();
+       
  
         $('#confirm-message-container').slideUp();
         $('#input-container').slideUp();
@@ -44,6 +55,24 @@ $(document).ready(function() {
         var postId = $(this).attr("alt");
         deletePost(postId);
     });
+
+    // add submit by enter
+     $('.post-comment-form').each(function() {
+        $(this).find('input').keypress(function(e) {
+            // Enter pressed?
+            if(e.which == 10 || e.which == 13) {
+                alert("clicled");
+                this.form.submit();
+                
+            }
+        });
+
+        $(this).find('input[type=submit]').hide();
+    });
+
+    // show button submit comment
+    $(".submit-comment-button").show();
+
 });
 
 
