@@ -12,7 +12,6 @@
 
                 <p class="date-info">{{ post.created_date.day }}/{{ post.created_date.month }}/{{ post.created_date.year }} </p>
 
-
                 {% if user.is_authenticated %}
                     <!--delete button-->
                     <p class="delete-container" alt="{{ post.id }}">-</p>
@@ -30,28 +29,27 @@
 
                 <!--container for all user comments-->
                 <div class="comments-container container">
-
                     <p class="comment-title">Comments</p>
-
-
+                    
                     {% for comment in post.comments_set.all %}
+                        
+                        <!--only show visible comments-->
+                        {% ifequal comment.visible 1 %}
 
-                    <!--container for one specific comment-->
-                    <div class="comment-box">
-                        <p class="comment-text"><span class="user-comment">{{comment.author}} : </span>{{comment.text_comment}}</p>
+                            <!--container for one specific comment-->
+                            <div class="comment-box" alt="{{comment.id}}">
+                                <p class="comment-text"><span class="user-comment">{{comment.author}} : </span>{{comment.text_comment}}</p>
 
-                        {% ifequal user.username comment.author %}
-                            <p class="delete-button">Delete</p>
-                        {% else %}
-                            <p class="delete-button"></p>
+                                {% ifequal user.username comment.author %}
+                                    <p class="delete-button" alt="{{comment.id}}">Delete</p>
+                                {% else %}
+                                    <p class="delete-button"></p>
+                                {% endifequal %}
+                            </div>
+
                         {% endifequal %}
-
-
-                    </div>
-
                      {% endfor %}
                     
-
                     <!--container for one adding comment-->
                     <div class="comment-input-box">
                         

@@ -11,7 +11,11 @@ $(document).ready(function() {
 
     // prevent default for sending comments
     $('.post-comment-form').submit(function(e) {
-        $.post('/billboardapp/addcomment', $(this).serialize(), function(data){
+    
+        var dataform = $(this).serialize().concat('&postnumber=');
+        dataform =  dataform.concat($(this).attr('alt'));
+  
+        $.post('/billboardapp/addcomment',dataform, function(data){
             console.log(data.message);
         });
         e.preventDefault();
@@ -24,7 +28,6 @@ $(document).ready(function() {
         // post form
         $('#new-post-form').submit();
        
- 
         $('#confirm-message-container').slideUp();
         $('#input-container').slideUp();
         $('#addmessage-container').slideDown();
@@ -49,26 +52,20 @@ $(document).ready(function() {
         $('#addmessage-container').slideDown();
     })
 
-    // add event listener to delete button
+    // add event listener to delete button (post)
     $('.delete-container').css( 'cursor', 'pointer' );
     $(".delete-container").click(function(){
         var postId = $(this).attr("alt");
         deletePost(postId);
     });
 
-    // add submit by enter
-     $('.post-comment-form').each(function() {
-        $(this).find('input').keypress(function(e) {
-            // Enter pressed?
-            if(e.which == 10 || e.which == 13) {
-                alert("clicled");
-                this.form.submit();
-                
-            }
-        });
-
-        $(this).find('input[type=submit]').hide();
+    // add event listener to delete button (comment)
+    $('.delete-button').css( 'cursor', 'pointer' );
+    $(".delete-button").click(function(){
+        var commentId = $(this).attr("alt");
+        deleteComment(commentId);
     });
+
 
     // show button submit comment
     $(".submit-comment-button").show();
@@ -85,6 +82,17 @@ function deletePost(postId){
         }, "json");
 
     location.reload();
+};
 
+
+// delete a specific post
+function deleteComment(commentId){
+    console.log(commentId);
+    
+    $.post( '/billboardapp/delcomment', { commentid: commentId }, function( data ) {
+            console.log("complete");
+        }, "json");
+
+    location.reload();
 
 };

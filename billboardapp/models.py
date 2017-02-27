@@ -30,7 +30,7 @@ class Comments(models.Model):
         self.save()
 
     def __str__(self):
-        return self.title
+        return self.text_comment
 
 
 
