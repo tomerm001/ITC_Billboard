@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
     // prevent form from refreshing by removing default and creating manual ajax post
     $('#new-post-form').submit(function(e) {
         $.post('/billboardapp/addpost', $(this).serialize(), function(data){
@@ -8,12 +9,25 @@ $(document).ready(function() {
         e.preventDefault();
     });
 
+    // prevent default for sending comments
+    $('.post-comment-form').submit(function(e) {
+    
+        var dataform = $(this).serialize().concat('&postnumber=');
+        dataform =  dataform.concat($(this).attr('alt'));
+  
+        $.post('/billboardapp/addcomment',dataform, function(data){
+            console.log(data.message);
+        });
+        e.preventDefault();
+        location.reload();
+    });
+
     // Attache actions to button
     $("#button-confirm").click(function() {
         
         // post form
         $('#new-post-form').submit();
- 
+       
         $('#confirm-message-container').slideUp();
         $('#input-container').slideUp();
         $('#addmessage-container').slideDown();
@@ -38,12 +52,24 @@ $(document).ready(function() {
         $('#addmessage-container').slideDown();
     })
 
-    // add event listener to delete button
+    // add event listener to delete button (post)
     $('.delete-container').css( 'cursor', 'pointer' );
     $(".delete-container").click(function(){
         var postId = $(this).attr("alt");
         deletePost(postId);
     });
+
+    // add event listener to delete button (comment)
+    $('.delete-button').css( 'cursor', 'pointer' );
+    $(".delete-button").click(function(){
+        var commentId = $(this).attr("alt");
+        deleteComment(commentId);
+    });
+
+
+    // show button submit comment
+    $(".submit-comment-button").show();
+
 });
 
 
@@ -56,6 +82,17 @@ function deletePost(postId){
         }, "json");
 
     location.reload();
+};
 
+
+// delete a specific post
+function deleteComment(commentId){
+    console.log(commentId);
+    
+    $.post( '/billboardapp/delcomment', { commentid: commentId }, function( data ) {
+            console.log("complete");
+        }, "json");
+
+    location.reload();
 
 };
