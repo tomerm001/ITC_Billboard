@@ -42,7 +42,8 @@
                 <a class= "menu" href="{% url 'billboardapp:index' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
                 <p class="top-menu">Hello {{ user.username }}<small> (<a href="{% url 'billboardapp:logout' %}"> Logout </a>)</small></p>
             {% else %}
-                <a href="{% url 'billboardapp:login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span>  Login</a>
+                <a href="{% url 'billboardapp:login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span>  Login</a> /
+                <a href="{% url 'billboardapp:register' %}" class="top-menu">  Register</a>
             {% endif %}
         </div>
         

@@ -1,5 +1,6 @@
 from django import forms
 from .models import Posts, Comments
+from django.contrib.auth.forms import UserCreationForm
 
 class PostForm(forms.ModelForm):
     
@@ -19,3 +20,4 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comments
         fields = ['text_comment']
+

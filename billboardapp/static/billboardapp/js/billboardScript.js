@@ -70,6 +70,10 @@ $(document).ready(function() {
     // show button submit comment
     $(".submit-comment-button").show();
 
+    // hide helptext for register user
+    $('.helptext').hide();
+
+
 });
 
 
