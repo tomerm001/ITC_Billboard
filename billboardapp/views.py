@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
 from django.http import HttpResponse
 from .models import Posts, Comments
@@ -7,14 +7,19 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from datetime import datetime
 from .forms import PostForm, CommentForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login as auth_login
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
+from django.http import HttpResponseRedirect
+
 
 
 # main funtion to render page
 def index (request):
 
+  
     # get form template for posts and comments
     postform = PostForm()
     commentform = CommentForm()
@@ -118,3 +123,43 @@ def deleteComment(request):
 
         return HttpResponse(json.dumps({"Completed": "Comment Removed"}),content_type="application/json")
 
+
+def registerUserPage(request):
+
+    form =  UserCreationForm()
+
+    return render(request, 'registration/register.html', {'form': form })
+
+
+def addUser(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        print(request.POST)
+
+        if form.is_valid():
+            
+            # save new user to database
+            form.save()
+            
+            # get username and password for autologin
+            username = request.POST['username']
+            password = request.POST['password1']
+
+            # #authenticate user then login
+            user = authenticate(username=username, password=password)
+            auth_login(request, user)
+
+            # redirect to main post view
+            return redirect('../')
+    else:
+        form = UserCreationForm() 
+
+    return render(request, 'registration/register.html', {'form': form}) 
+    
+
+
+
+
+class PostList(ListView):
+    model = Posts
+    template_name = 'billboardapp/list.html'
