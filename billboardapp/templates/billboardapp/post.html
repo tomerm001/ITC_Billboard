@@ -2,70 +2,77 @@
 
 {% block content %}
     
-        {% for post in all_posts %}
+        {% if all_posts != None %}
 
-        <!--container for messages-->
-        <div class="messages-container" id="{{ post.id }}">
+            {% for post in all_posts %}
 
-            <!--container for a specific post-->
-            <div class="post-box">
+            <!--container for messages-->
+            <div class="messages-container" id="{{ post.id }}">
 
-                <p class="date-info">{{ post.created_date.day }}/{{ post.created_date.month }}/{{ post.created_date.year }} </p>
+                <!--container for a specific post-->
+                <div class="post-box">
 
-                {% if user.is_authenticated %}
-                    <!--delete button-->
-                    <p class="delete-container" alt="{{ post.id }}">-</p>
-                {% endif %}
+                    <p class="date-info">{{ post.created_date.day }}/{{ post.created_date.month }}/{{ post.created_date.year }} </p>
 
-                <!--ppost title-->
-                <p class="post-title">{{ post.title }}</p>
-
-                <!--post content-->
-                <p class="post-text"> {{ post.text }}</p>
-
-                <!--username for post-->
-                <p class="post-username"> {{ post.author }}</p>
-
-
-                <!--container for all user comments-->
-                <div class="comments-container container">
-                    <p class="comment-title">Comments</p>
-                    
-                    {% for comment in post.comments_set.all %}
-                        
-                        <!--only show visible comments-->
-                        {% ifequal comment.visible 1 %}
-
-                            <!--container for one specific comment-->
-                            <div class="comment-box" alt="{{comment.id}}">
-                                <p class="comment-text"><span class="user-comment">{{comment.author}} : </span>{{comment.text_comment}}</p>
-
-                                {% ifequal user.username comment.author %}
-                                    <p class="delete-button" alt="{{comment.id}}">Delete</p>
-                                {% else %}
-                                    <p class="delete-button"></p>
-                                {% endifequal %}
-                            </div>
-
+                    {% if user.is_authenticated %}
+                        {% ifequal user post.user%}
+                            <!--delete button-->
+                            <p class="delete-container" alt="{{ post.id }}">-</p>
                         {% endifequal %}
-                     {% endfor %}
-                    
-                    <!--container for one adding comment-->
-                    <div class="comment-input-box">
+                    {% endif %}
+
+                    <!--ppost title-->
+                    <p class="post-title">{{ post.title }}</p>
+
+                    <!--post content-->
+                    <p class="post-text"> {{ post.text }}</p>
+
+                    <!--username for post-->
+                    <p class="post-username"> {{ post.author }}</p>
+
+
+                    <!--container for all user comments-->
+                    <div class="comments-container container">
+                        <p class="comment-title">Comments</p>
                         
-                        <span class="user-comment">{{user}} : </span>
+                        {% for comment in post.comments_set.all %}
+                            
+                            <!--only show visible comments-->
+                            {% ifequal comment.visible 1 %}
+
+                                <!--container for one specific comment-->
+                                <div class="comment-box" alt="{{comment.id}}">
+                                    <p class="comment-text"><span class="user-comment">{{comment.author}} : </span>{{comment.text_comment}}</p>
+
+                                    {% ifequal user.username comment.author %}
+                                        <p class="delete-button" alt="{{comment.id}}">Delete</p>
+                                    {% else %}
+                                        <p class="delete-button"></p>
+                                    {% endifequal %}
+                                </div>
+
+                            {% endifequal %}
+                        {% endfor %}
                         
-                        <form method="POST" class="post-comment-form" id="new-comment-form-{{ post.id }}" alt="{{ post.id }}">
-                            {% csrf_token %} 
-                            {{ commentform.as_p}}
-                            <input class="submit-comment-button" value="Send" type="submit" name="submitcomment"></<input>
-                        </form>
+                        {% if user.is_authenticated %}
+                        <!--container for one adding comment-->
+                        <div class="comment-input-box">
+                            
+                            <span class="user-comment">{{user}} : </span>
+                            
+                            <form method="POST" class="post-comment-form" id="new-comment-form-{{ post.id }}" alt="{{ post.id }}">
+                                {% csrf_token %} 
+                                {{ commentform.as_p}}
+                                <input class="submit-comment-button" value="Send" type="submit" name="submitcomment"></<input>
+                            </form>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
 
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
 
         {% if user.is_authenticated %}
          <!-- ================================= CONTAINER FOR FORM AREA ========================================= -->

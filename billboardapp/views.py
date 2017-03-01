@@ -19,13 +19,18 @@ from django.http import HttpResponseRedirect
 # main funtion to render page
 def index (request):
 
-  
     # get form template for posts and comments
     postform = PostForm()
     commentform = CommentForm()
 
     # query all posts that are visible/not deleted
     all_posts = Posts.objects.filter(visible=True)
+
+
+    if all_posts.exists():
+        print("e")
+    else:
+        all_posts = None
 
     # get specific logged in user
     logged_user = request.user
@@ -44,6 +49,9 @@ def addpost(request):
 
         if form.is_valid():
             post = form.save(commit=False)
+            print(request.user)
+            post.user = request.user
+            print(post)
             post.save()
             
             # build data for response
